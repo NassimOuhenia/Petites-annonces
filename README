@@ -5,3 +5,7 @@ et connaitre les petites annonces postées par les autres utilisateurs. S'il est
 avec celui qui a posté cette annonce. Un utilisateur doit pouvoir retirer son annonce. Le role du gestionnaire est de collecter les annonces, de les diffuser
 aux clients, de les mettre à jour et de donner aux utilisateurs les informations
 pour correspondre avec les autres utilisateurs.
+
+Application   **     Client/Serveur    **   en   JAVA
+
+Lancer MainServeur  puis   MainClient (ou plusieurs processus MainClient à la fois)  
