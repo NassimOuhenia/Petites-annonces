@@ -1,0 +1,7 @@
+On veut réaliser une application de vente entre particulier par petite annonce à l’aide d’un gestionnaire.
+
+Un utilisateur doit pouvoir poster une annonce (le domaine de l’annonce (voiture, moto, musique, électroménager, téléphone, autres), le prix et un descriptif) 
+et connaitre les petites annonces postées par les autres utilisateurs. S'il est interressé par une annonce, il doit pouvoir correspondre directement
+avec celui qui a posté cette annonce. Un utilisateur doit pouvoir retirer son annonce. Le role du gestionnaire est de collecter les annonces, de les diffuser
+aux clients, de les mettre à jour et de donner aux utilisateurs les informations
+pour correspondre avec les autres utilisateurs.
