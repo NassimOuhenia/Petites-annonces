@@ -30,22 +30,24 @@ public class Utilisateur implements UtilisateurModel {
 		return socket;
 	}
 
+	@Override
+	public int hashCode() {
+		return pseudo.hashCode();
+	}
 	
 	@Override
 	public boolean equals(Object o) {
-		if(! (o instanceof UtilisateurModel) ) {
+		if(!(o instanceof UtilisateurModel) ) {
 			return false;
 		} else {
 			UtilisateurModel um = (UtilisateurModel) o;
 			return pseudo.equals(um.getPseudo());
 		}
-		
 	}
 	
 	@Override
 	public String toString() {
 		return "Utilisateur: " + pseudo;
-
 	}
 
 

@@ -2,8 +2,8 @@ package application;
 
 import java.util.ArrayList;
 
-
 import model.*;
+import writer.WriterReader;
 
 public class Gestionnaire implements GestionnaireModel {
 
@@ -27,14 +27,14 @@ public class Gestionnaire implements GestionnaireModel {
 
 	@Override
 	public String diffuserAnnonces(ArrayList<AnnonceModel> _annonces) {
-		
+
 		String response = "";
 		for (int i = 0; i < _annonces.size(); i++) {
-			response += "Annonce n°"+String.valueOf(i)+" : "+_annonces.get(i).toString()+"\n";
+			response += "Annonce n°" + String.valueOf(i) + " : " + _annonces.get(i).toString() + WriterReader.SEPARATOR;
 		}
-		
+
 		return response;
-		
+
 	}
 
 	@Override

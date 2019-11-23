@@ -1,8 +1,10 @@
-package application;
+package client;
 
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
+import writer.WriterReader;
 
 public class Client {
 

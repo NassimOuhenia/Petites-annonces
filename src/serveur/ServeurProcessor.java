@@ -1,10 +1,12 @@
-package application;
+package serveur;
 
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+import application.*;
 import model.*;
+import writer.WriterReader;
 
 public class ServeurProcessor implements Runnable {
 
@@ -23,7 +25,6 @@ public class ServeurProcessor implements Runnable {
 			writer = new DataOutputStream(sock.getOutputStream());
 			reader = new DataInputStream(sock.getInputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -32,9 +33,7 @@ public class ServeurProcessor implements Runnable {
 	public String affiche_annonce() {
 		if (!gstionnaire.getAnnonces().isEmpty()) {
 			return gstionnaire.diffuserAnnonces(gstionnaire.getAnnonces());
-		}
-
-		else
+		} else
 			return WriterReader.ANNONCE_EMPTY;
 	}
 
@@ -58,9 +57,7 @@ public class ServeurProcessor implements Runnable {
 			reponse = WriterReader.lire(reader);
 			annonce.setPrix(Integer.valueOf(reponse));
 		} catch (NumberFormatException e) {
-
 			return WriterReader.ADD_ANNONCE_FAILURE;
-
 		}
 
 		annonce.setUtilisateur(user);
@@ -83,51 +80,39 @@ public class ServeurProcessor implements Runnable {
 		WriterReader.ecrire(requet + WriterReader.DELETE_ANNONCE, writer);
 
 		boolean saisi = true;
-
 		while (saisi) {
-
 			try {
-
 				reponse = WriterReader.lire(reader);
 				int index = Integer.valueOf(reponse);
 				gstionnaire.retirerAnnonce(mesAnonnces.get(index));
 				saisi = false;
-
 			} catch (Exception e) {
-				// TODO: handle exception
 				return WriterReader.NUMBER_FORMAT;
 			}
 		}
 		return WriterReader.DELETE_ANNONCE_SUCCES;
-
 	}
 
 	public void bye() {
 		WriterReader.ecrire(WriterReader.LOGOUT, writer);
 		try {
-
 			sock.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public boolean existe() {
-
-		for (UtilisateurModel u : gstionnaire.getUtilisateurs()) {
-			if (u.equals(user))
-				return true;
-		}
-		return false;
+		return gstionnaire.getUtilisateurs().contains(user);
 	}
 
 	public void run() {
+		
 		boolean pseudoajou = false;
 		String reponse = "";
 		String requet = "";
 		String inscrire;
-		// tant que la connexion est active, on traite les demandes
+		
 		while (!sock.isClosed()) {
 
 			if (!pseudoajou) {
@@ -169,7 +154,6 @@ public class ServeurProcessor implements Runnable {
 				}
 
 			} else {
-
 				requet += WriterReader.BIENVENUE + user.getPseudo() + WriterReader.MENU;
 
 				WriterReader.ecrire(requet, writer);
@@ -187,7 +171,6 @@ public class ServeurProcessor implements Runnable {
 					requet = supprimmer_annonce();
 					break;
 				case "4":
-
 					bye();
 					break;
 				default:

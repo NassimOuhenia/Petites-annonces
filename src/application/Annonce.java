@@ -11,7 +11,6 @@ public class Annonce implements AnnonceModel {
 
 	@Override
 	public UtilisateurModel getUtilisateur() {
-
 		return utilisateur;
 	}
 
@@ -52,8 +51,7 @@ public class Annonce implements AnnonceModel {
 
 	@Override
 	public void setUtilisateur(UtilisateurModel new_utilisateur) {
-		utilisateur=new_utilisateur;
-		
+		utilisateur = new_utilisateur;
 	}
 
 }
