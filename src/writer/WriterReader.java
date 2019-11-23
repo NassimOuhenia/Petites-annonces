@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class WriterReader {
 
-	public final static char SEPARATOR = '\n';
+	public final static String SEPARATOR = ",";
 
 	public final static int PORT = 2121;
 	public final static String IP_ADDERRESS = "localhost";
@@ -28,23 +28,18 @@ public class WriterReader {
 
 	public final static String LOGOUT = "BYE-BYE";
 
-	public static String lire(DataInputStream reader) {
+	public static String lire(BufferedReader reader) {
 		try {
-			return reader.readUTF();
+			return reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "erreur lecture!";
 	}
 
-	public static void ecrire(String reponse, DataOutputStream writer) {
-		try {
-			writer.writeUTF(reponse);
-			writer.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public static void ecrire(String reponse, PrintWriter writer) {
+		writer.println(reponse);
+		writer.flush();
 	}
 
 	public static String lireClavier(Scanner sc) {

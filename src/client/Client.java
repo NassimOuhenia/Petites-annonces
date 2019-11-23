@@ -9,32 +9,34 @@ import writer.WriterReader;
 public class Client {
 
 	private Socket socket;
-	private DataOutputStream writer;
-	private DataInputStream reader;
+	private PrintWriter writer;
+	private BufferedReader reader;
 	private final Scanner sc = new Scanner(System.in);
 
 	public Client(Socket _socket) {
 		socket = _socket;
-
+		
 		try {
-			writer = new DataOutputStream(socket.getOutputStream());
-			reader = new DataInputStream(socket.getInputStream());
+			writer = new PrintWriter(socket.getOutputStream());
+			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	void connect() throws Exception {
-		String response = reader.readUTF();
+		String response = WriterReader.lire(reader);
+
 		while (!socket.isClosed() && !response.equals(WriterReader.LOGOUT)) {
-			
-			System.out.println(response);
+			String[] reponse = response.split(WriterReader.SEPARATOR);
+			for (String s : reponse)
+				System.out.println(s);
 			WriterReader.ecrire(WriterReader.lireClavier(sc), writer);
-			response = reader.readUTF();
+			response = WriterReader.lire(reader);
 		}
-		
+
 		System.out.println(WriterReader.LOGOUT);
 		socket.close();
 		writer.close();

@@ -23,6 +23,7 @@ public class Serveur {
 			try {
 				// On attend une connexion d'un client
 				Socket client = server.accept();
+				
 				// Une fois reçue, on la traite dans un thread séparé
 				Thread t = new Thread(new ServeurProcessor(client, gs));
 				t.start();

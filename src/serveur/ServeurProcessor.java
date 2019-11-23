@@ -11,8 +11,8 @@ import writer.WriterReader;
 public class ServeurProcessor implements Runnable {
 
 	private Socket sock;
-	private DataOutputStream writer;
-	private DataInputStream reader;
+	private PrintWriter writer;
+	private BufferedReader reader;
 	private Utilisateur user;
 	private GestionnaireModel gstionnaire;
 
@@ -22,8 +22,8 @@ public class ServeurProcessor implements Runnable {
 		gstionnaire = gs;
 
 		try {
-			writer = new DataOutputStream(sock.getOutputStream());
-			reader = new DataInputStream(sock.getInputStream());
+			writer = new PrintWriter(sock.getOutputStream());
+			reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
