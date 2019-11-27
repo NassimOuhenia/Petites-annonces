@@ -18,6 +18,4 @@ public interface AnnonceModel {
 
 	public void setPrix(int new_prix);
 
-	public String toString();
-
 }

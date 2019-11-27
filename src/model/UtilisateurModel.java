@@ -7,9 +7,12 @@ public interface UtilisateurModel {
 	public Socket getSocket();
 
 	public String getPseudo();
+	
+	public boolean getEnLigne();
 
-	public boolean equals(Object o);
+	public void setEnLigne(boolean enLigne);
 
-	public String toString();
+	public boolean getHaveAnnonce();
 
+	public void setHaveAnnonce(boolean haveAnnonce);
 }
